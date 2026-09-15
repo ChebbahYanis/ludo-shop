@@ -394,6 +394,9 @@ jobs:
             echo "Composer install failed (attempt $i/3), retrying in 10s..."
             sleep 10
           done
+          
+      - name: Build Sass
+        run: php bin/console sass:build
 
       - name: Infection mutation testing
         run: php -d memory_limit=512M vendor/bin/infection --threads=4 --show-mutations --no-progress
