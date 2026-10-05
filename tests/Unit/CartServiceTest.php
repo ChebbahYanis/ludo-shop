@@ -9,6 +9,7 @@ use App\Entity\CartItem;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Service\CartService;
+use App\Service\PromotionService;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +20,7 @@ class CartServiceTest extends TestCase
     protected function setUp(): void
     {
         $em = $this->createStub(EntityManagerInterface::class);
-        $this->service = new CartService($em);
+        $this->service = new CartService($em, new PromotionService());
     }
 
     public function testEmptyCartReturnsZero(): void
